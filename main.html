@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page 1</title>
+</head>
+<body>
+    <h1>Page 1</h1>
+    <button id="incrementButton">Додати (+1)</button>
+    <button id="clearStorageButton">Очистити</button>
+    <p id="clickCount">Ця кнопка була натиснута: 0 раз</p>
+
+    <script>
+        const incrementButton = document.getElementById('incrementButton');
+        const clearStorageButton = document.getElementById('clearStorageButton');
+        const clickCountDisplay = document.getElementById('clickCount');
+
+        incrementButton.addEventListener('click', () => {
+            let count = parseInt(localStorage.getItem('clickCount') || 0);
+            count++;
+            localStorage.setItem('clickCount', count);
+            clickCountDisplay.textContent = `Ця кнопка була натиснута: ${count} раз`;
+        });
+
+        clearStorageButton.addEventListener('click', () => {
+            localStorage.clear();
+            sessionStorage.clear();
+            clickCountDisplay.textContent = `Ця кнопка була натиснута: 0 раз`;
+        });
+
+        window.addEventListener('load', () => {
+            const count = parseInt(localStorage.getItem('clickCount') || 0);
+            clickCountDisplay.textContent = `Ця кнопка була натиснута: ${count} раз`;
+        });
+    </script>
+</body>
+</html>
